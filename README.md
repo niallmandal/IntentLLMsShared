@@ -1,2 +1,13 @@
 # IntentLLMs
-run python main.py for a gui that shows the result
+
+
+## Getting started
+To install dependencies:
+```
+pip install -r ./requirements.txt
+```
+
+To run the gui:
+```
+python main.py
+```
