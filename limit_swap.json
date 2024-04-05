@@ -1,0 +1,35 @@
+{
+    "title": "Token Swap Transaction: Limit Order",
+    "type": "object",
+    "properties": {
+      "fromAsset": {
+        "type": "string",
+        "enum": ["$ETH", "$USDC", "$SOL", "$XRP"]
+      },
+      "toAsset": {
+        "type": "string",
+        "enum": ["$ETH", "$USDC", "$SOL", "$XRP"]
+      },
+      "amount": {
+        "type": "number"
+      },
+      "recipientAddress": {
+        "type": "string"
+      },
+      "limitOrder": {
+        "type": "object",
+        "properties": {
+          "limitPrice": {
+            "type": "number"
+          },
+          "expiryTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": ["limitPrice", "expiryTimestamp"]
+      }
+    },
+    "required": ["fromAsset", "toAsset", "amount", "recipientAddress", "limitOrder"]
+  }
+  

@@ -1,0 +1,22 @@
+{
+    "title": "Token Swap Transaction",
+    "type": "object",
+    "properties": {
+      "fromAsset": {
+        "type": "string",
+        "enum": ["$ETH", "$USDC", "$SOL", "$XRP"]
+      },
+      "toAsset": {
+        "type": "string",
+        "enum": ["$ETH", "$USDC", "$SOL", "$XRP"]
+      },
+      "amount": {
+        "type": "number"
+      },
+      "recipientAddress": {
+        "type": "string"
+      }
+    },
+    "required": ["fromAsset", "toAsset", "amount", "recipientAddress"]
+  }
+  
