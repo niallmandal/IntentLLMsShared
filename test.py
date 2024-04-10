@@ -1,5 +1,6 @@
 import json
 import os
+import httpx
 from openai import OpenAI
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
@@ -9,8 +10,19 @@ load_dotenv()
 
 # Function to convert transaction text to JSON using appropriate schema
 def convert_transaction(transaction_text, swap_schema, limit_order_schema):
-    client = OpenAI()
-    client.api_key = os.getenv("OPENAI_API_KEY")
+    api_key = os.getenv("OPENAI_CIRCLE_API_KEY")
+    if api_key is None: 
+        api_key = os.getenv("OPENAI_API_KEY")
+        client = OpenAI(api_key=api_key)
+    else:
+        client = OpenAI(
+            api_key=api_key,
+            base_url="https://chatai.circle.com/api/proxy/open_ai/v1",
+            http_client=httpx.Client(
+                follow_redirects=True,
+                verify=False,
+            ),
+        )
 
     # System message explaining the task and giving hints for each schema
     system_message = {
